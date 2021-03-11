@@ -105,7 +105,7 @@ public class Quiz {
 	{
 		int sum_ans = 0;
 		for(int i = 0; i < this.numOfQuestion; i++)
-			sum_ans += this.content.get(i).score(i);
+			sum_ans += this.content.get(i).score(answers[i]);
 		return (double)sum_ans/this.Score();
 	}
 }

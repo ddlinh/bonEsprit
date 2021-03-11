@@ -58,13 +58,23 @@ public class Problem {
 			{
 				this.test.ouput();
 				int[] ans = this.test.Answer().clone();
-				double score = this.test.Score(ans);
+				double score = this.test.Score(ans)*100;
 				if (score >= 0.7)
-					System.out.println("Dangerous");
+				{
+					int sum_score = this.test.Score();
+					System.out.println("Your score: " + score + "%");
+				}					
 				else if(score >= 0.4 && score < 0.7)
-					System.out.println("Maybe");
+				{
+					int sum_score = this.test.Score();
+					System.out.println("Your score: " + score + "%");
+				}
 				else
-					System.out.println("Normal");
+				{
+					
+					System.out.println("Your probability: " + score + "%");
+				}
+
 				break;
 			}
 			else if(tmp.compareTo("N") == 0 || tmp.compareTo("n") == 0)

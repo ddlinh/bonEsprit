@@ -53,15 +53,15 @@ public class Question {
 	public void output()
 	{
 		System.out.println(this.question);
-		System.out.println("0. " + score[0] + "\t1. " + score[1]);
-		System.out.println("2. " + score[2] + "\t3. " + score[3]);
+		System.out.println("0. " + answer[0] + "\t1. " + answer[1]);
+		System.out.println("2. " + answer[2] + "\t3. " + answer[3]);
 	}
 	
 	//score
 	public int score()
 	{
 		int sum = 0;
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i <= 3; i++)
 			sum += score[i];
 		return sum;
 	}
