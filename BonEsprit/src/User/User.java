@@ -3,7 +3,6 @@ package User;
 import java.util.*;
 
 public class User {
-	protected String ID;
 	protected String username;
 	protected String password;
 	protected int type_user;
@@ -14,17 +13,15 @@ public class User {
 	
 	
 	public User() {
-		ID = "";
 		username = "";
 		password = "";
-		type_user = -1;
+		type_user = 0;
 		first_name = "";
 		last_name = "";
 		email = "";
 		online_status = 0;
 	}
 	public User(String id, String username, String password, String first_name, String last_name, String email) {
-		this.ID = id;
 		this.username = username;
 		this.password = password;
 		this.type_user = -1;

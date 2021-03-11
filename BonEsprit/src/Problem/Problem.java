@@ -61,17 +61,14 @@ public class Problem {
 				double score = this.test.Score(ans)*100;
 				if (score >= 0.7)
 				{
-					int sum_score = this.test.Score();
 					System.out.println("Your score: " + score + "%");
 				}					
 				else if(score >= 0.4 && score < 0.7)
 				{
-					int sum_score = this.test.Score();
 					System.out.println("Your score: " + score + "%");
 				}
 				else
-				{
-					
+				{	
 					System.out.println("Your probability: " + score + "%");
 				}
 
@@ -84,7 +81,25 @@ public class Problem {
 				System.out.println("Wrong Syntax. Try again: ");
 				tmp = obj.nextLine();
 			}
-		}	
+		}
+	}
+	
+	//get
+	public ArrayList<String> Symptoms()
+	{
+		return this.symptoms;
+	}
+	public String Owner()
+	{
+		return this.owner;
+	}
+	public Quiz Test()
+	{
+		return this.test;
+	}
+	public String Name()
+	{
+		return this.name;
 	}
 	
 }
