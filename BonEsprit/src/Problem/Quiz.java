@@ -57,7 +57,8 @@ public class Quiz {
 	{
 		for(int i = 0; i < this.numOfQuestion; i++)
 		{
-			System.out.print(i+1 + ". ");
+			int no = i+1;
+			System.out.print(no + ". ");
 			this.content.get(i).output();
 		}
 	}
@@ -70,7 +71,8 @@ public class Quiz {
 		Scanner obj = new Scanner(System.in);
 		for(int i = 0; i < this.numOfQuestion; i++)
 		{
-			System.out.print("Answer for question (A - 0, B = 1, C - 2, D - 3):" + i+1);
+			int no = i + 1;
+			System.out.print("Answer for question " + no + "(A - 0, B = 1, C - 2, D - 3):");
 			while(true)
 			{
 				boolean isNum = true;

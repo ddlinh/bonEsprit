@@ -27,13 +27,13 @@ public class Problem {
 			this.name = tmp;
 		
 		System.out.println("Enter symptoms:");
-		tmp = obj.nextLine();
+		String symp = obj.nextLine();
 		while(true)
 		{
-			this.symptoms.add(tmp);
+			this.symptoms.add(symp);
 			System.out.println("Enter next symptoms (\"q\" for exit): ");
-			tmp = obj.nextLine();
-			if(tmp == "q")
+			symp = obj.nextLine();
+			if(symp.compareTo("q") == 0)
 				break;
 		}
 		
@@ -54,7 +54,7 @@ public class Problem {
 		String tmp = obj.nextLine();
 		while(true)
 		{
-			if (tmp == "Y" || tmp == "y")
+			if (tmp.compareTo("Y") == 0 || tmp.compareTo("y") == 0)
 			{
 				this.test.ouput();
 				int[] ans = this.test.Answer().clone();
@@ -67,7 +67,7 @@ public class Problem {
 					System.out.println("Normal");
 				break;
 			}
-			else if(tmp == "N" || tmp == "n")
+			else if(tmp.compareTo("N") == 0 || tmp.compareTo("n") == 0)
 				break;
 			else
 			{
