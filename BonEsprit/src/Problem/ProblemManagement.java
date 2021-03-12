@@ -17,10 +17,18 @@ public class ProblemManagement {
 		return true;
 	}
 	
-	public boolean remove(Problem a)
+	public boolean remove(String ID)
 	{
-		all_problem.remove(a);
-		return true;
+		for(int i = 0; i < this.all_problem.size(); i++)
+		{
+			if(this.all_problem.get(i).ID().equals(ID))
+			{
+				all_problem.remove(i);
+				return true;
+			}
+				
+		}
+		return false;
 	}
 	
 	public ArrayList<Problem> search(String name)
@@ -34,17 +42,4 @@ public class ProblemManagement {
 		return result;
 	}
 	
-	public ArrayList<Problem> search(String info, int option)
-	{
-		ArrayList<Problem> result = new ArrayList<Problem>();
-		if(option == 1)
-		{
-			for(int i = 0; i < this.all_problem.size(); i++)
-			{
-				if(this.all_problem.get(i).Name().contains(info))
-					result.add(this.all_problem.get(i));
-			}			
-		}
-		return result;
-	}
 }

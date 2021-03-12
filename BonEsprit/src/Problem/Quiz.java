@@ -19,10 +19,10 @@ public class Quiz {
 	
 	//input, output
 	public void input(String therapist, String problem)
-	{
+	{		
 		this.therapist = therapist;
 		this.problem = problem;
-		this.name = "TEST FOR " + problem.toUpperCase();
+		this.name = "TEST FOR " + problem.toUpperCase();	
 		
 		Scanner obj = new Scanner(System.in);
 		System.out.println("Enter number question: ");

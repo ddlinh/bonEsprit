@@ -1,24 +1,32 @@
 package Problem;
 
 import java.util.*;
+import User.*;
 public class Problem {
+	private String ID;
 	private String name;
+	private String description;
 	private ArrayList<String> symptoms;
+	private ArrayList<String> treatments;
 	private String owner;
 	private Quiz test;
 	
 	//constructor
 	public Problem()
 	{
+		ID = "";
 		name = "";
+		description = "";
 		symptoms = new ArrayList<String>();
+		treatments = new ArrayList<String>();
 		owner = "";
 		test = new Quiz();
 	}
 	
 	//input
-	public void input(String therapist)
+	public void input(String therapist, String ID)
 	{
+		this.ID = ID;
 		this.owner = therapist;
 		Scanner obj = new Scanner(System.in);
 		System.out.println("Enter name: ");
@@ -26,12 +34,28 @@ public class Problem {
 		if(tmp != "")
 			this.name = tmp;
 		
+		System.out.println("Enter description: ");
+		tmp = obj.nextLine();
+		if(tmp != "")
+			this.description = tmp;
+		
 		System.out.println("Enter symptoms:");
 		String symp = obj.nextLine();
 		while(true)
 		{
 			this.symptoms.add(symp);
 			System.out.println("Enter next symptoms (\"q\" for exit): ");
+			symp = obj.nextLine();
+			if(symp.compareTo("q") == 0)
+				break;
+		}
+		
+		System.out.println("Enter treatments:");
+		String treatment = obj.nextLine();
+		while(true)
+		{
+			this.treatments.add(treatment);
+			System.out.println("Enter next treatment (\"q\" for exit): ");
 			symp = obj.nextLine();
 			if(symp.compareTo("q") == 0)
 				break;
@@ -48,6 +72,10 @@ public class Problem {
 		System.out.println("Symptoms:");
 		for(int i = 0; i < this.symptoms.size(); i++)
 			System.out.println(i+1 + ". " + this.symptoms.get(i));
+		
+		System.out.println("Treatments:");
+		for(int i = 0; i < this.treatments.size(); i++)
+			System.out.println(i+1 + ". " + this.treatments.get(i));
 		
 		Scanner obj = new Scanner(System.in);
 		System.out.println("Do you want to take the test? Y - Yes, N - No");
@@ -101,5 +129,15 @@ public class Problem {
 	{
 		return this.name;
 	}
-	
+	public String ID()
+	{
+		return this.ID;
+	}
+	public String Description()
+	{
+		return this.description;
+	}
+	public ArrayList<String> Treatment() {
+		return this.treatments;
+	}
 }

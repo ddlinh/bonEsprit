@@ -3,6 +3,7 @@ package User;
 import java.util.*;
 
 public class User {
+	protected String ID;
 	protected String username;
 	protected String password;
 	protected int type_user;
@@ -12,7 +13,8 @@ public class User {
 	protected int online_status;
 	
 	
-	public User() {
+	public User(String ID) {
+		this.ID = ID;
 		username = "";
 		password = "";
 		type_user = 0;
@@ -21,16 +23,8 @@ public class User {
 		email = "";
 		online_status = 0;
 	}
-	public User(String id, String username, String password, String first_name, String last_name, String email) {
-		this.username = username;
-		this.password = password;
-		this.type_user = -1;
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.email = email;
-		online_status = 0;
-	}
-	
+
+	//function
 	public boolean Login(String username, String password) {
 		if(this.online_status == 1)
 		{
@@ -76,38 +70,28 @@ public class User {
 		Scanner sc = new Scanner(System.in);
 		switch (option) {
 		case 1: {
-			System.out.print("Enter your new ID: ");
-			this.ID = sc.next();
-			
-		}
-		case 2: {
-			System.out.print("Enter your new username: ");
-			this.username = sc.next();
-		}
-		case 3: {
 			System.out.print("Enter your new password: ");
 			this.password = sc.next();
+			break;
 		}
-		case 4: {
+		case 2: {
 			System.out.println("Enter your new name: ");
 			System.out.print("\tFirst name: ");
-			this.first_name = sc.next();
+			this.first_name = sc.nextLine();
 			System.out.print("\tLast name: ");
-			this.last_name = sc.next();
+			this.last_name = sc.nextLine();
+			break;
 		}
-		case 5: {
+		case 3: {
 			System.out.print("Enter your new email: ");
-			this.email = sc.next();
+			this.email = sc.nextLine();
+			break;
 		}
 		
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + option);
 		}
+		return true;
 	}
-	public static void main(String[] args) {
-		User u = new User("18126038", "vinhduong", "123", "Vinh", "Duong", "duongquangvinh6@gmail.com");
-		u.Login("vinhduong", "123");
-			
-		
-	}
+
 }
