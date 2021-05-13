@@ -37,15 +37,30 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="97" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="project.structure.side.proportion" value="0.36817104" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunManager">
+    <configuration name="ProblemView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BonEsprit.UI.ProblemView" />
+      <module name="BonEsprit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BonEsprit.UI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -57,6 +72,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ProblemView" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -71,7 +91,7 @@
       <workItem from="1620809544483" duration="88000" />
       <workItem from="1620819955709" duration="8489000" />
       <workItem from="1620831403131" duration="2730000" />
-      <workItem from="1620876604267" duration="5635000" />
+      <workItem from="1620876604267" duration="12322000" />
     </task>
     <servers />
   </component>

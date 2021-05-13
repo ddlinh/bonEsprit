@@ -11,7 +11,6 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class Therapist extends User {
-    String certificates;
     Integer exp;
     String workingPlace;
 
