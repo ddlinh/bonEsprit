@@ -1,4 +1,4 @@
-package UI;
+package BonEsprit.UI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

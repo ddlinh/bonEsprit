@@ -1,4 +1,4 @@
-package UI;
+package BonEsprit.UI;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Rectangle;
 import java.awt.ComponentOrientation;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.Point;
@@ -60,12 +61,12 @@ public class Login_Form extends JFrame {
 		
 		JLabel titleLabel = new JLabel("Bon Esprit");
 		titleLabel.setFont(new Font("Roboto", Font.BOLD, 40));
-		titleLabel.setBounds(118, 36, 188, 75);
+		titleLabel.setBounds(118, 36, 250, 75);
 		contentPane.add(titleLabel);
 		
 		JLabel usernameLabel = new JLabel("Username");
 		usernameLabel.setFont(new Font("Roboto", Font.BOLD, 16));
-		usernameLabel.setBounds(73, 130, 75, 30);
+		usernameLabel.setBounds(73, 130, 100, 30);
 		contentPane.add(usernameLabel);
 		
 		usernameTxt = new JTextField();
@@ -97,6 +98,7 @@ public class Login_Form extends JFrame {
 		loginBtn.setBorder(null);
 		loginBtn.setBackground(new Color(0x78C9BA));
 		loginBtn.setBounds(158, 230, 109, 40);
+		loginBtn.setCursor(Cursor.getPredefinedCursor(HAND_CURSOR));
 		contentPane.add(loginBtn);
 		
 		
@@ -106,6 +108,7 @@ public class Login_Form extends JFrame {
 		signupBtn.setFont(new Font("Roboto", Font.BOLD, 16));
 		signupBtn.setBorder(null);
 		signupBtn.setBounds(158, 293, 109, 40);
+		signupBtn.setCursor(Cursor.getPredefinedCursor(HAND_CURSOR));
 		contentPane.add(signupBtn);
 	}
 }

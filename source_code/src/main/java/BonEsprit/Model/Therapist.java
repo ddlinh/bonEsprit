@@ -11,7 +11,12 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class Therapist extends User {
-    Integer exp;
+    public Therapist(User a) {
+		super(a);
+		// TODO Auto-generated constructor stub
+	}
+
+	Integer exp;
     String workingPlace;
 
     @OneToMany(mappedBy = "author")
