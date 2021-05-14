@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Component;
@@ -28,7 +30,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login_Form extends JFrame {
-
 	private JPanel contentPane;
 	private JTextField usernameTxt;
 	private JTextField passwordTxt;
@@ -37,25 +38,9 @@ public class Login_Form extends JFrame {
 	private UserService userService = new UserService();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login_Form frame = new Login_Form();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public Login_Form(JPanel mainPanel) {
+	public Login_Form(LayoutForm layoutForm) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
 		contentPane = new JPanel();
@@ -105,14 +90,14 @@ public class Login_Form extends JFrame {
 		loginBtn.setBorder(null);
 		loginBtn.setBackground(new Color(0x78C9BA));
 		loginBtn.setBounds(158, 230, 109, 40);
-		loginBtn.setCursor(Cursor.getPredefinedCursor(HAND_CURSOR));
+		loginBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				User userInfo = userService.logIn(usernameTxt.getText(), passwordTxt.getText());
 
-				if (userInfo.getID() == 0) {
-					// in thong tin dang sai
+				if (userInfo.getID() == 0 || userInfo == null) {
+					JOptionPane.showMessageDialog(contentPane, "Invalid username or Wrong password");
 					return;
 				}
 
@@ -129,12 +114,12 @@ public class Login_Form extends JFrame {
 		signupBtn.setFont(new Font("Roboto", Font.BOLD, 16));
 		signupBtn.setBorder(null);
 		signupBtn.setBounds(158, 293, 109, 40);
-		signupBtn.setCursor(Cursor.getPredefinedCursor(HAND_CURSOR));
+		signupBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
 		signupBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainPanel.add(new Signup_Form());
+				layoutForm.add(new Signup_Form());
 			}
 		});
 
