@@ -118,33 +118,14 @@ public class UserDAO {
         }
     }
 
-    public void signUp(User user) throws SignUpException, UserNameExistedException {
-        User existUser = readByUsername(user.getUserName());
-
-        boolean canCreate = true;
-        if(existUser == null) {
-            canCreate = false;
-            throw new SignUpException();
-        }
-
-        if(existUser.getID() == 0) {
-            canCreate = false;
-            throw new UserNameExistedException();
-
-        }
-        if(canCreate) {
-            create(user);
-        }
-    }
-
-    public User logIn(User user) throws InvalidInfoException, LogInException {
+    public User logIn(String username, String password) throws InvalidInfoException, LogInException {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
         try {
             List<User> users = session.createQuery("FROM User U WHERE U.userName =: username AND U.passWord =: password")
-                    .setParameter("username", user.getUserName())
-                    .setParameter("password", user.getPassWord())
+                    .setParameter("username", username)
+                    .setParameter("password", password)
                     .list();
             transaction.commit();
             if(users.size() > 0) {
@@ -153,8 +134,7 @@ public class UserDAO {
             throw new InvalidInfoException();
         } catch (InvalidInfoException e) {
             throw new InvalidInfoException();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
             throw new LogInException();

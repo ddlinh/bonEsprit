@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 import BonEsprit.Model.Problem;
@@ -208,20 +209,21 @@ public class Problem_Form extends JFrame {
 		descriptionTextArea.setText("A sense of hopelessness, the feeling of being \u201Cweighed down,\u201D and a loss of enjoyment in things that used to bring you joy \u2014 these are some common signs of depression, one of the most widespread mental health issues in the world.");
 		descriptionTextArea.setBounds(30, 115, 400, 80);
 		
-		JScrollPane scrollDescriptionArea = new JScrollPane (descriptionTextArea, 
-				   JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane scrollDescriptionArea = new JScrollPane (descriptionTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollDescriptionArea.setBounds(30, 115, 400, 117);
+		scrollDescriptionArea.setBorder(null);
 		postContentPanel.add(scrollDescriptionArea);
 		
-		scrollSymptomsPanel = new JScrollPane();
-		scrollSymptomsPanel.setBounds(30, 280, 374, 100);
-		postContentPanel.add(scrollSymptomsPanel);
-		
-		symptomsPanel = new JPanel();
-		symptomsPanel.setBorder(null);
-		symptomsPanel.setBackground(Color.WHITE);
-		scrollSymptomsPanel.setViewportView(symptomsPanel);
+		symptomsPanel = new JPanelCustom(375, 300);
 		symptomsPanel.setLayout(null);
+		symptomsPanel.setLocation(30, 280);
+		symptomsPanel.setBackground(Color.WHITE);
+		
+		scrollSymptomsPanel = new JScrollPane(symptomsPanel);
+		scrollSymptomsPanel.setBounds(30, 280, 375, 100);
+		scrollSymptomsPanel.setBorder(null);
+		scrollSymptomsPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		postContentPanel.add(scrollSymptomsPanel);
 		
 		String[] symptomSample = {"A persistent feeling of loneliness or sadness", "Lack of energy", "Feelings of hopelessness"};
 		int position = 0;
@@ -230,15 +232,17 @@ public class Problem_Form extends JFrame {
 			symptomsPanel.add(createItem("-    " + symptomSample[i], position));
 			position += 30;
 		}
-		scrollTreatmentsPanel = new JScrollPane();
-		scrollTreatmentsPanel.setBounds(30, 425, 374, 100);
-		postContentPanel.add(scrollTreatmentsPanel);
 		
-		treatmentsPanel = new JPanel();
+		
+		treatmentsPanel = new JPanelCustom(375, 300);
 		treatmentsPanel.setLayout(null);
-		treatmentsPanel.setBorder(null);
-		treatmentsPanel.setBackground(Color.WHITE);
-		scrollTreatmentsPanel.setViewportView(treatmentsPanel);
+		treatmentsPanel.setLocation(30, 425);
+		treatmentsPanel.setBackground(Color.WHITE);		
+		scrollTreatmentsPanel = new JScrollPane(treatmentsPanel);
+		scrollTreatmentsPanel.setBounds(30, 425, 375, 100);
+		scrollTreatmentsPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollTreatmentsPanel.setBorder(null);
+		postContentPanel.add(scrollTreatmentsPanel);
 		
 		String[] treatmentSample = {"Cognitive behavioral therapy (CBT)", "Interpersonal therapy (IPT)", "Behavioral activation therapy (BA)"};
 		position = 0;

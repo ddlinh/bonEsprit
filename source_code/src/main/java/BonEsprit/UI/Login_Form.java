@@ -1,5 +1,8 @@
 package BonEsprit.UI;
 
+import BonEsprit.Model.User;
+import BonEsprit.Service.UserService;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -21,12 +24,17 @@ import java.awt.Insets;
 import java.awt.Point;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Login_Form extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField usernameTxt;
 	private JTextField passwordTxt;
+	private JButton loginBtn;
+	private JButton signupBtn;
+	private UserService userService = new UserService();
 
 	/**
 	 * Launch the application.
@@ -47,7 +55,7 @@ public class Login_Form extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login_Form() {
+	public Login_Form(JPanel mainPanel) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
 		contentPane = new JPanel();
@@ -91,23 +99,45 @@ public class Login_Form extends JFrame {
 		contentPane.add(passwordTxt);
 		
 	
-		JButton loginBtn = new JButton("Login");
+		loginBtn = new JButton("Login");
 		loginBtn.setForeground(new Color(81, 61, 61));
 		loginBtn.setFont(new Font("Roboto", Font.BOLD, 16));
 		loginBtn.setBorder(null);
 		loginBtn.setBackground(new Color(0x78C9BA));
 		loginBtn.setBounds(158, 230, 109, 40);
 		loginBtn.setCursor(Cursor.getPredefinedCursor(HAND_CURSOR));
+
+		loginBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				User userInfo = userService.logIn(usernameTxt.getText(), passwordTxt.getText());
+
+				if (userInfo.getID() == 0) {
+					// in thong tin dang sai
+					return;
+				}
+
+				UserManager.set(userInfo);
+			}
+		});
+
 		contentPane.add(loginBtn);
 		
 		
-		JButton signupBtn = new JButton("Sign Up");
+		signupBtn = new JButton("Sign Up");
 		signupBtn.setBackground(new Color(0xB6C6C3));
 		signupBtn.setForeground(new Color(0x513D3D));
 		signupBtn.setFont(new Font("Roboto", Font.BOLD, 16));
 		signupBtn.setBorder(null);
 		signupBtn.setBounds(158, 293, 109, 40);
 		signupBtn.setCursor(Cursor.getPredefinedCursor(HAND_CURSOR));
+
+		signupBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.add(new Signup_Form());
+			}
+		});
+
 		contentPane.add(signupBtn);
 	}
 }

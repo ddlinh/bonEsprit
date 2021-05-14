@@ -108,7 +108,7 @@ public class UpdateProblem_Form extends JFrame {
 	public UpdateProblem_Form() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 800);
+		setBounds(100, 100, 450, 780);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0xFFFFFF));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

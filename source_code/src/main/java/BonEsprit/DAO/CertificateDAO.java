@@ -56,6 +56,14 @@ public class CertificateDAO {
         }
     }
 
+    public boolean update(List<Certificate> certificates) {
+        for (Certificate certificate : certificates) {
+            update(certificate);
+        }
+
+        return true;
+    }
+
     public boolean update(Certificate certificate) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();

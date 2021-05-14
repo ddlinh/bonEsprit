@@ -172,67 +172,7 @@ public class Signup_Form extends JFrame {
 		emailTxt.setBackground(new Color(225, 239, 243));
 		emailTxt.setBounds(129, 191, 275, 25);
 		contentPane.add(emailTxt);
-		
 
-	}
-	
-	public void ErrorMess(String Message) {
-		JLabel errorLabel = new JLabel(Message);
-		errorLabel.setBackground(Color.WHITE);
-		errorLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		errorLabel.setForeground(Color.RED);
-		errorLabel.setFont(new Font("Roboto", Font.PLAIN, 12));
-		errorLabel.setBounds(139, 232, 265, 30);
-		contentPane.add(errorLabel);
-	}
-	
-	
-	
-	public void action() {
-		
-		
-		passwordTxt.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String pass = passwordTxt.getText();
-				if(pass.length() <= 8) {
-					ErrorMess("Password cannot be less than 8 characters");
-				}
-				
-			}
-			
-		});
-		
-		password2Txt.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String pass = passwordTxt.getText();
-				String pass2 = password2Txt.getText();
-				
-				if(!pass2.equals(pass)) {
-					ErrorMess("Comfirm pass is not equal pass");
-				}
-				
-			}
-			
-		});
-		
-		emailTxt.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String EMAIL_PATTERN =  "^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$";
-				String email = emailTxt.getText();
-				Boolean flag = Pattern.matches(EMAIL_PATTERN, email);
-				if(!flag) {
-					ErrorMess("Email is not valid");
-				}
-			}
-			
-		});
-	}
-	
+	}	
 	
 }

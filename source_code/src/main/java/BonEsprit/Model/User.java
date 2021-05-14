@@ -51,4 +51,9 @@ public class User implements Cloneable {
 
     )
     List<Quiz> quizzes;
+
+    @Override
+    public User clone() throws CloneNotSupportedException {
+        return (User) super.clone();
+    }
 }

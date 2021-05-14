@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 public class MyProfile_Form extends JFrame {
@@ -260,15 +261,15 @@ public class MyProfile_Form extends JFrame {
 			certificateLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 			profilePanel.add(certificateLabel);
 			
-			JPanel certificatePanel = new JPanel();
+			JPanel certificatePanel = new JPanelCustom(350, 300);
 			certificatePanel.setBackground(new Color(255, 250, 240));
-			certificatePanel.setBounds(20,240,350,300);
-			certificatePanel.setBorder(null);
+			certificatePanel.setLocation(20,240);
 			certificatePanel.setLayout(null);
 			
 			JScrollPane certificateScroll = new JScrollPane(certificatePanel);
 			certificateScroll.setBounds(20, 240, 350, 100);
-			certificateScroll.setViewportView(certificatePanel);
+			certificateScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+			certificateScroll.setBorder(null);
 			profilePanel.add(certificateScroll);
 			
 			String[] certificateList = {"Certificate 1", "Certificate 2", "Certificate 3", "Certificate 4", "Certificate 5"};

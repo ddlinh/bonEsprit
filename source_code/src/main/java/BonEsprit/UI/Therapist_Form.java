@@ -5,8 +5,10 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Dialog.ModalExclusionType;
+import java.awt.Dimension;
 import java.io.File;
 import java.util.Calendar;
 import java.util.List;
@@ -19,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.SwingConstants;
 
@@ -60,7 +63,7 @@ public class Therapist_Form extends JFrame {
 	public JPanel createLatestPost(String name, Long milliSecond, int position) {
 		JPanel newPostPanel = new JPanel();
 		newPostPanel.setLayout(null);
-		newPostPanel.setBounds(20, position, 380, 40);
+		newPostPanel.setBounds(5, position, 380, 40);
 		newPostPanel.setBackground(new Color(0xD3E4F9));
 		
 		JLabel titlePost = new JLabel(name);
@@ -86,7 +89,7 @@ public class Therapist_Form extends JFrame {
 	public Therapist_Form() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 730);
+		setBounds(100, 100, 450, 750);
 		
 		mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(0xFFFFFF));
@@ -180,11 +183,12 @@ public class Therapist_Form extends JFrame {
 		therapistContentPanel.setLayout(null);
 		
 		JScrollPane scrollTherapistPanel = new JScrollPane(therapistContentPanel);
-		scrollTherapistPanel.setAutoscrolls(true);
 		scrollTherapistPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollTherapistPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollTherapistPanel.setAutoscrolls(true);
 		scrollTherapistPanel.setBounds(0, 100, 450, 630);
+		
+		mainPanel.add(scrollTherapistPanel);
 		
 		JLabel therapistTitleLabel = new JLabel("THERAPIST NAME");
 		therapistTitleLabel.setForeground(new Color(139, 0, 0));
@@ -241,16 +245,15 @@ public class Therapist_Form extends JFrame {
 		infoLabel_4.setForeground(new Color(0, 139, 139));
 		infoLabel_4.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 		
-		JPanel certificatePanel = new JPanel();
+		JPanel certificatePanel = new JPanelCustom(420, 300);
 		certificatePanel.setLayout(null);
 		certificatePanel.setBackground(Color.WHITE);
-		certificatePanel.setBounds(10, 245, 420, 135);
-		certificatePanel.setBorder(null);
+		certificatePanel.setLocation(10, 245);
 		
 		JScrollPane certificateScrollPane = new JScrollPane(certificatePanel);
 		certificateScrollPane.setBounds(10, 245, 420, 135);
+		certificateScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		certificateScrollPane.setBorder(null);
-		certificateScrollPane.setAutoscrolls(true);
 		therapistContentPanel.add(certificateScrollPane);
 		
 		JLabel infoLabel_5 = new JLabel("This therapist's latest post:");
@@ -259,19 +262,19 @@ public class Therapist_Form extends JFrame {
 		infoLabel_5.setBounds(10, 405, 238, 30);
 		therapistContentPanel.add(infoLabel_5);
 		
-		JPanel latestPostPanel = new JPanel();
+		JPanel latestPostPanel = new JPanelCustom(420, 300);
 		latestPostPanel.setBackground(Color.WHITE);
-		latestPostPanel.setBounds(10, 445, 420, 170);
+		latestPostPanel.setLocation(10, 445);
 		latestPostPanel.setLayout(null);
 		
 		JScrollPane latestPostScroll = new JScrollPane(latestPostPanel);
-		latestPostScroll.setBounds(10, 445, 420, 170);
+		latestPostScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		latestPostScroll.setBounds(10, 445, 420, 150);
 		latestPostScroll.setBorder(null);
-		latestPostScroll.setAutoscrolls(true);
 		therapistContentPanel.add(latestPostScroll);
 		
 		String[] certificateSample = {"Certificate 01", "Certificate 02", "Certificate 03", "Certificate 04", "Certificate 05"};
-		int position = 0;
+		int position = 5;
 		for(int i = 0; i < certificateSample.length; i++)
 		{
 			certificatePanel.add(createCertificate("-    " + certificateSample[i], position));
@@ -281,12 +284,12 @@ public class Therapist_Form extends JFrame {
 		String[] namePostSample = {"Post 01", "Post 02", "Post 03", "Post 04"};
 		Long[] milliSecondSample = {80000L, 70000L, 60000L, 50000L};
 		
-		position = 0;
+		position = 5;
 		for(int i = 0; i < namePostSample.length; i++)
 		{
 			latestPostPanel.add(createLatestPost(namePostSample[i], milliSecondSample[i], position));
 			position += 50;
 		}
-		mainPanel.add(scrollTherapistPanel);
+		
 	}
 }
