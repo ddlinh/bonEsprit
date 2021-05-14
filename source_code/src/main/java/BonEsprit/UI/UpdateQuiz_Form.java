@@ -45,7 +45,7 @@ class QuestionPanel extends JPanel {
 		questionLabel.setBounds(0, 5, 150, 30);
 		
 		questionArea = new JTextArea();
-		questionArea.setBounds(10, 40, 250, 50);
+		questionArea.setBounds(10, 40, 250, 40);
 		
 		JLabel answerLabel = new JLabel("Answer: ");
 		answerLabel.setBounds(0, 150, 150, 30);
