@@ -1,26 +1,38 @@
 package BonEsprit.UI;
 
 import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JRadioButton;
+import javax.swing.InputVerifier;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.ComponentOrientation;
+import java.awt.Component;
+import java.util.regex.Pattern;
 
 public class Signup_Form extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField usernameTxt;
-	private JTextField passwordTxt;
-	private JTextField password2Txt;
+	private JPasswordField passwordTxt;
+	private JPasswordField password2Txt;
 	private JTextField emailTxt;
 
 	/**
@@ -31,6 +43,7 @@ public class Signup_Form extends JFrame {
 			public void run() {
 				try {
 					Signup_Form frame = new Signup_Form();
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -104,28 +117,52 @@ public class Signup_Form extends JFrame {
 		signupBtn.setBounds(161, 306, 109, 40);
 		contentPane.add(signupBtn);
 		
+		JLabel userNameErrorLabel = new JLabel("");
+		userNameErrorLabel.setBounds(130, 65, 270, 15);
+		contentPane.add(userNameErrorLabel);
+		
 		usernameTxt = new JTextField();
 		usernameTxt.setFont(new Font("Roboto", Font.PLAIN, 16));
 		usernameTxt.setColumns(10);
 		usernameTxt.setBorder(null);
-		usernameTxt.setBackground(new Color(225, 239, 243));
-		usernameTxt.setBounds(129, 39, 275, 30);
+		usernameTxt.setBackground(new Color(0xE1EFF3));
+		usernameTxt.setBounds(129, 39, 275, 25);
+		usernameTxt.setInputVerifier(new InputVerifier() {
+
+			@Override
+			public boolean verify(JComponent input) {
+				String txt = usernameTxt.getText();
+				if(txt.length() == 0) {
+					userNameErrorLabel.setText("Username cannot be blank");
+					return false;
+				}
+				if(txt.length() < 8) {
+					userNameErrorLabel.setText("Username must have more than 7 characters.");
+					return false;
+				}
+				userNameErrorLabel.setText("");
+				return true;
+			}
+			
+		});
+		
+		
 		contentPane.add(usernameTxt);
 		
-		passwordTxt = new JTextField();
+		passwordTxt = new JPasswordField();
 		passwordTxt.setFont(new Font("Roboto", Font.PLAIN, 16));
 		passwordTxt.setColumns(10);
 		passwordTxt.setBorder(null);
 		passwordTxt.setBackground(new Color(225, 239, 243));
-		passwordTxt.setBounds(129, 88, 275, 30);
+		passwordTxt.setBounds(129, 88, 275, 25);
 		contentPane.add(passwordTxt);
 		
-		password2Txt = new JTextField();
+		password2Txt = new JPasswordField();
 		password2Txt.setFont(new Font("Roboto", Font.PLAIN, 16));
 		password2Txt.setColumns(10);
 		password2Txt.setBorder(null);
 		password2Txt.setBackground(new Color(225, 239, 243));
-		password2Txt.setBounds(129, 138, 275, 30);
+		password2Txt.setBounds(129, 138, 275, 25);
 		contentPane.add(password2Txt);
 		
 		emailTxt = new JTextField();
@@ -133,7 +170,69 @@ public class Signup_Form extends JFrame {
 		emailTxt.setColumns(10);
 		emailTxt.setBorder(null);
 		emailTxt.setBackground(new Color(225, 239, 243));
-		emailTxt.setBounds(129, 191, 275, 30);
+		emailTxt.setBounds(129, 191, 275, 25);
 		contentPane.add(emailTxt);
+		
+
 	}
+	
+	public void ErrorMess(String Message) {
+		JLabel errorLabel = new JLabel(Message);
+		errorLabel.setBackground(Color.WHITE);
+		errorLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+		errorLabel.setForeground(Color.RED);
+		errorLabel.setFont(new Font("Roboto", Font.PLAIN, 12));
+		errorLabel.setBounds(139, 232, 265, 30);
+		contentPane.add(errorLabel);
+	}
+	
+	
+	
+	public void action() {
+		
+		
+		passwordTxt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String pass = passwordTxt.getText();
+				if(pass.length() <= 8) {
+					ErrorMess("Password cannot be less than 8 characters");
+				}
+				
+			}
+			
+		});
+		
+		password2Txt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String pass = passwordTxt.getText();
+				String pass2 = password2Txt.getText();
+				
+				if(!pass2.equals(pass)) {
+					ErrorMess("Comfirm pass is not equal pass");
+				}
+				
+			}
+			
+		});
+		
+		emailTxt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String EMAIL_PATTERN =  "^[a-zA-Z][\\w-]+@([\\w]+\\.[\\w]+|[\\w]+\\.[\\w]{2,}\\.[\\w]{2,})$";
+				String email = emailTxt.getText();
+				Boolean flag = Pattern.matches(EMAIL_PATTERN, email);
+				if(!flag) {
+					ErrorMess("Email is not valid");
+				}
+			}
+			
+		});
+	}
+	
+	
 }

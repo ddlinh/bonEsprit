@@ -91,7 +91,6 @@ public class Login_Form extends JFrame {
 		contentPane.add(passwordTxt);
 		
 	
-		
 		JButton loginBtn = new JButton("Login");
 		loginBtn.setForeground(new Color(81, 61, 61));
 		loginBtn.setFont(new Font("Roboto", Font.BOLD, 16));
