@@ -35,6 +35,7 @@ public class Problem_Form extends JFrame {
 	private JButton allPostsButton;
 	private JButton allQuizzesButton;
 	private JLabel postTitleLabel;
+	private JLabel authorLabel;
 	private JLabel descriptionLabel;
 	private JPanel symptomsPanel;
 	private JLabel symptomsLabel;
@@ -260,7 +261,7 @@ public class Problem_Form extends JFrame {
 		takeQuiz.setBackground(new Color(102, 205, 170));
 		postContentPanel.add(takeQuiz);
 		
-		JLabel authorLabel = new JLabel("Author ");
+		authorLabel = new JLabel("Author ");
 		authorLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		authorLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		authorLabel.setHorizontalAlignment(SwingConstants.RIGHT);

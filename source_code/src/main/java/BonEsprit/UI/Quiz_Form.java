@@ -98,6 +98,7 @@ public class Quiz_Form extends JFrame {
 	private JButton allPostsButton;
 	private JButton allQuizzesButton;
 	private JLabel quizTitleLabel;
+	private JLabel authorLabel;
 	private JButton submitButton;
 
 	/**
@@ -212,8 +213,17 @@ public class Quiz_Form extends JFrame {
 		quizTitleLabel = new JLabel("TEST FOR DEPRESSION");
 		quizTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		quizTitleLabel.setFont(new Font("SansSerif", Font.BOLD, 25));
-		quizTitleLabel.setBounds(0, 135, 440, 30);
+		quizTitleLabel.setBounds(0, 120, 440, 30);
 		mainPanel.add(quizTitleLabel);
+		
+		authorLabel = new JLabel("Author ");
+		authorLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		authorLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		authorLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+		authorLabel.setFont(new Font("Tahoma", Font.PLAIN | Font.ITALIC, 16));
+		authorLabel.setBounds(160, 165, 250, 20);
+		mainPanel.add(authorLabel);
+
 
 		
         JPanel questionPanel = new JPanelCustom(425, 100000);
@@ -222,7 +232,7 @@ public class Quiz_Form extends JFrame {
         questionPanel.setBackground(new Color(0xFFFFFF));
 
         JScrollPane questionScroll = new JScrollPane(questionPanel);
-        questionScroll.setBounds(5, 200, 425, 450);
+        questionScroll.setBounds(5, 205, 425, 450);
         questionScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         questionScroll.setBorder(null);
         questionScroll.setViewportView(questionPanel);
