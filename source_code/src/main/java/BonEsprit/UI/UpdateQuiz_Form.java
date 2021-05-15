@@ -151,7 +151,7 @@ public class UpdateQuiz_Form extends JFrame {
 	public UpdateQuiz_Form() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 780);
+		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0xFFFFFF));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -176,17 +176,17 @@ public class UpdateQuiz_Form extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        submitButton.setBounds(83, 692, 100, 40);
+        submitButton.setBounds(83, 650, 100, 40);
         contentPane.add(submitButton);
         
         cancelButton = new JButton("Cancel");
         cancelButton.setFont(new Font("Tahoma", Font.BOLD, 15));
-        cancelButton.setBounds(266, 692, 100, 40);
+        cancelButton.setBounds(266, 650, 100, 40);
         cancelButton.setBackground(new Color(0x8D3E3E));
         cancelButton.setForeground(new Color(0xFFFFFF));
         contentPane.add(cancelButton);
         
-        JPanel questionPanel = new JPanelCustom(425, 290);
+        JPanel questionPanel = new JPanelCustom(425, 100000);
         questionPanel.setLocation(5, 80);
         questionPanel.setLayout(null);
 
@@ -195,6 +195,7 @@ public class UpdateQuiz_Form extends JFrame {
         questionScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         questionScroll.setBorder(null);
         questionScroll.setViewportView(questionPanel);
+        questionScroll.getVerticalScrollBar().setUnitIncrement(20);
         contentPane.add(questionScroll);
         
         questionPanel.add(new QuestionPanel(5, 1));
@@ -205,7 +206,7 @@ public class UpdateQuiz_Form extends JFrame {
         addQuestion.setFont(new Font("Tahoma", Font.BOLD, 15));
         addQuestion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         addQuestion.setBackground(new Color(0x85DEB9));
-        addQuestion.setBounds(148, 591, 150, 40);
+        addQuestion.setBounds(270, 591, 150, 40);
         
         addQuestion.addActionListener(new ActionListener() {
         	int number = 2;
@@ -213,7 +214,7 @@ public class UpdateQuiz_Form extends JFrame {
             int height = 290 * number;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				questionPanel.setSize(425, height);
+				
 				
 				questionPanel.add(new QuestionPanel(position, number));
 				position += 300;

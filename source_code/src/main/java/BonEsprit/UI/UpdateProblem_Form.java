@@ -108,13 +108,19 @@ public class UpdateProblem_Form extends JFrame {
 	public UpdateProblem_Form() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 780);
-		contentPane = new JPanel();
+		setBounds(100, 100, 450, 750);
+		contentPane = new JPanelCustom(450,800);
 		contentPane.setBackground(new Color(0xFFFFFF));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLocation(0,0);
 		
+		contentPane.setLayout(null);
+
+		JScrollPane contentScroll = new JScrollPane(contentPane, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		contentScroll.setBounds(0, 0, 450, 750);
+		contentScroll.setBorder(null);
+		setContentPane(contentScroll);
+
 		JLabel titleLabel = new JLabel("Title:");
 		titleLabel.setBounds(29, 10, 69, 47);
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 18));

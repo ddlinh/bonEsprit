@@ -133,7 +133,7 @@ public class MyProfile_Form extends JFrame {
 	public MyProfile_Form(boolean Therapist) {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 730);
+		setBounds(100, 100, 450, 750);
 		
 		mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(0xFFFFFF));

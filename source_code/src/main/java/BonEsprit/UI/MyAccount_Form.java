@@ -20,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JRadioButton;
 
-public class MyAccountForm extends JFrame {
+public class MyAccount_Form extends JFrame {
 
 	private JPanel mainPanel;
 	private JTextField searchTextField;
@@ -42,7 +42,7 @@ public class MyAccountForm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MyAccountForm frame = new MyAccountForm();
+					MyAccount_Form frame = new MyAccount_Form();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,10 +64,10 @@ public class MyAccountForm extends JFrame {
 		return new JLabel(text);
 	}
 	
-	public MyAccountForm() {
+	public MyAccount_Form() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 730);
+		setBounds(100, 100, 450, 750);
 		
 		mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(0xFFFFFF));

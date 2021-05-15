@@ -17,6 +17,12 @@ public class JPanelCustom extends JPanel {
 		d = new Dimension(width, height);
 	}
 	
+	public void setDimension(int width, int height) {
+		this.width = width;
+		this.height = height;
+		d.setSize(width, height);
+	}
+	
 	@Override
     public Dimension getMinimumSize(){
         return d;

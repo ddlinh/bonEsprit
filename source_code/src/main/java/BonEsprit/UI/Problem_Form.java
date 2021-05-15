@@ -34,6 +34,7 @@ public class Problem_Form extends JFrame {
 	private JButton homeButton;
 	private JButton allPostsButton;
 	private JButton allQuizzesButton;
+	private JLabel postTitleLabel;
 	private JLabel descriptionLabel;
 	private JPanel symptomsPanel;
 	private JLabel symptomsLabel;
@@ -76,7 +77,7 @@ public class Problem_Form extends JFrame {
 	public Problem_Form() {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 730);
+		setBounds(100, 100, 450, 750);
 		
 		mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(0xFFFFFF));
@@ -163,19 +164,19 @@ public class Problem_Form extends JFrame {
 		allPostsButton.setBackground(new Color(0xF4B4B4));
 		allPostsButton.setFont(new Font("SansSerif", Font.BOLD, 16));
 		
-		JPanel postContentPanel = new JPanel();
+		JPanel postContentPanel = new JPanelCustom(450, 700);
 		postContentPanel.setAutoscrolls(true);
 		postContentPanel.setBackground(Color.WHITE);
-		postContentPanel.setBounds(0, 100, 450, 700);
+		postContentPanel.setLocation(0, 100);
 		postContentPanel.setLayout(null);
 		
 		JScrollPane scrollPostPanel = new JScrollPane(postContentPanel);
 		scrollPostPanel.setAutoscrolls(true);
-		scrollPostPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		scrollPostPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-		scrollPostPanel.setBounds(0, 100, 450, 600);
+		scrollPostPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPostPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPostPanel.setBounds(0, 100, 450, 700);
 		
-		JLabel postTitleLabel = new JLabel("DEPRESSION");
+		postTitleLabel = new JLabel("DEPRESSION");
 		postTitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		postTitleLabel.setFont(new Font("SansSerif", Font.BOLD, 25));
 		postTitleLabel.setBounds(0, 15, 440, 30);

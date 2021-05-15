@@ -16,7 +16,7 @@ public class UserService {
     private static final UserDAO userDAO = new UserDAO();
     private static final CertificateDAO certificateDAO = new CertificateDAO();
 
-    public String signUp(User user) {
+    public static String signUp(User user) {
         try {
             User existUser = userDAO.readByUsername(user.getUserName());
 

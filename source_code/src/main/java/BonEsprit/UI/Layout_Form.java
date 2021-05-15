@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class LayoutForm extends JFrame {
+public class Layout_Form extends JFrame {
 
 	private JPanel contentPane;
 
@@ -19,7 +19,7 @@ public class LayoutForm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LayoutForm frame = new LayoutForm();
+					Layout_Form frame = new Layout_Form();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,9 +31,9 @@ public class LayoutForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public LayoutForm() {
+	public Layout_Form() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 780);
+		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));

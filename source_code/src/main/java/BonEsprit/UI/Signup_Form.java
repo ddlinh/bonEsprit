@@ -1,5 +1,8 @@
 package BonEsprit.UI;
 
+import BonEsprit.Model.User;
+import BonEsprit.Service.UserService;
+
 import java.awt.BorderLayout;
 
 import java.awt.EventQueue;
@@ -25,6 +28,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.ComponentOrientation;
 import java.awt.Component;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public class Signup_Form extends JFrame {
@@ -36,28 +40,12 @@ public class Signup_Form extends JFrame {
 	private JTextField emailTxt;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Signup_Form frame = new Signup_Form();
-					
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
-	public Signup_Form() {
+	@Deprecated
+	public Signup_Form(Layout_Form mainLayout) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 400);
+		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -172,6 +160,18 @@ public class Signup_Form extends JFrame {
 		emailTxt.setBackground(new Color(225, 239, 243));
 		emailTxt.setBounds(129, 191, 275, 25);
 		contentPane.add(emailTxt);
+
+		User newUser = new User();
+		long uniqueNum = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+		newUser.setID(uniqueNum);
+		newUser.setUserName(usernameTxt.getText());
+		newUser.setPassWord(passwordTxt.getText());
+		newUser.setEmail(emailTxt.getText());
+
+		String result = UserService.signUp(newUser);
+		JOptionPane.showMessageDialog(this, result);
+
+		mainLayout.remove(this);
 
 	}	
 	

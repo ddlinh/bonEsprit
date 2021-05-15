@@ -40,9 +40,9 @@ public class Login_Form extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login_Form(LayoutForm layoutForm) {
+	public Login_Form(Layout_Form layoutForm) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 400);
+		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBounds(new Rectangle(0, 100, 0, 0));
@@ -119,7 +119,7 @@ public class Login_Form extends JFrame {
 		signupBtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				layoutForm.add(new Signup_Form());
+				layoutForm.add(new Signup_Form(layoutForm));
 			}
 		});
 
