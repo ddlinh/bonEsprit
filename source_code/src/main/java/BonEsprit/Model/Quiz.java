@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -34,9 +35,14 @@ public class Quiz implements Cloneable {
     @ManyToMany(mappedBy = "quizzes")
     List<User> users;
 
-    Date date;
+    Long date;
 
     public Quiz(long l) {
         this.ID = l;
+        this.name = "";
+        this.date = 0L;
+        this.questions = new ArrayList<Question>();
+        this.answers = new ArrayList<Answer>();
+        this.users = new ArrayList<User>();
     }
 }

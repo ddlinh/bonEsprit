@@ -29,6 +29,7 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="JupyterTrust" id="35d9aada-ae25-47d7-a8ac-ccce3bebe1bd" />
   <component name="ProjectId" id="1sFMnqP2o1PmgKkL9z78x2kpWQm" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -49,9 +50,9 @@
     <property name="project.structure.side.proportion" value="0.36817104" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
-  <component name="RunManager" selected="Application.MyAccountForm">
-    <configuration name="MyAccountForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="BonEsprit.UI.MyAccountForm" />
+  <component name="RunManager" selected="Application.Login_Form">
+    <configuration name="Layout_Form" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BonEsprit.UI.Layout_Form" />
       <module name="BonEsprit" />
       <extension name="coverage">
         <pattern>
@@ -63,12 +64,51 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProblemView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="BonEsprit.UI.ProblemView" />
+    <configuration name="Login_Form" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BonEsprit.UI.form.Login_Form" />
       <module name="BonEsprit" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="BonEsprit.UI.*" />
+          <option name="PATTERN" value="BonEsprit.UI.form.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main_Form" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BonEsprit.UI.form.Main_Form" />
+      <module name="BonEsprit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BonEsprit.UI.panel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UpdateProblem_Form" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BonEsprit.UI.form.UpdateProblem_Form" />
+      <module name="BonEsprit" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BonEsprit.UI.form.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UpdateQuiz_Form" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="BonEsprit.UI.form.UpdateQuiz_Form" />
+      <module name="source_code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="BonEsprit.UI.form.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -78,8 +118,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MyAccountForm" />
-        <item itemvalue="Application.ProblemView" />
+        <item itemvalue="Application.Login_Form" />
+        <item itemvalue="Application.Layout_Form" />
+        <item itemvalue="Application.Main_Form" />
+        <item itemvalue="Application.UpdateProblem_Form" />
+        <item itemvalue="Application.UpdateQuiz_Form" />
       </list>
     </recent_temporary>
   </component>
@@ -100,6 +143,11 @@
       <workItem from="1621001794095" duration="5372000" />
       <workItem from="1621010633328" duration="13000" />
       <workItem from="1621011770318" duration="2921000" />
+      <workItem from="1621068105634" duration="5361000" />
+      <workItem from="1621075759779" duration="10434000" />
+      <workItem from="1621089295401" duration="8276000" />
+      <workItem from="1621099618441" duration="48457000" />
+      <workItem from="1621180658490" duration="10000" />
     </task>
     <servers />
   </component>

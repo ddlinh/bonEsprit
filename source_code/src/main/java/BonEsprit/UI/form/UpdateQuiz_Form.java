@@ -1,12 +1,14 @@
-package BonEsprit.UI;
+package BonEsprit.UI.form;
 
-import java.awt.BorderLayout;
+import BonEsprit.Model.Problem;
+import BonEsprit.Model.Quiz;
+import BonEsprit.UI.panel.JPanelCustom;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Dialog.ModalExclusionType;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -123,32 +125,15 @@ public class UpdateQuiz_Form extends JFrame {
 	
 	private JButton addQuestion;
 	private JButton submitButton;
-	private JButton clearButton;
 	private JButton cancelButton;
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					UpdateQuiz_Form frame = new UpdateQuiz_Form();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	
 	
-	public UpdateQuiz_Form() {
+	public UpdateQuiz_Form(Quiz quiz, Problem problem) {
 		setModalExclusionType(ModalExclusionType.APPLICATION_EXCLUDE);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
@@ -163,7 +148,7 @@ public class UpdateQuiz_Form extends JFrame {
 		titleLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
 		contentPane.add(titleLabel);
 		
-		titleTxtField = new JTextField();
+		titleTxtField = new JTextField(quiz.getName());
 		titleTxtField.setBounds(88, 20, 308, 25);
 		titleTxtField.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		contentPane.add(titleTxtField);
@@ -200,8 +185,6 @@ public class UpdateQuiz_Form extends JFrame {
         
         questionPanel.add(new QuestionPanel(5, 1));
         
-        
-        
         addQuestion = new JButton("Add Question");
         addQuestion.setFont(new Font("Tahoma", Font.BOLD, 15));
         addQuestion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -214,8 +197,6 @@ public class UpdateQuiz_Form extends JFrame {
             int height = 290 * number;
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
 				questionPanel.add(new QuestionPanel(position, number));
 				position += 300;
 				number ++;
