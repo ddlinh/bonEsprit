@@ -26,4 +26,5 @@ public class Answer {
     @OneToMany(mappedBy = "answer")
     List<AnswerDetail> details;
 
+    int score;
 }

@@ -18,6 +18,9 @@ public class User implements Cloneable {
     String firstName;
     String lastName;
     String email;
+    String workingPlace;
+    int experiences;
+
     @OneToMany(mappedBy = "therapist")
     List<Certificate> certificates;
     Integer typeUser;

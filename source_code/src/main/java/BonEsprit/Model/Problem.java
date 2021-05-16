@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -47,5 +48,11 @@ public class Problem implements Cloneable {
 
     public Problem(Long i) {
         this.ID = i;
+        this.name = "";
+        this.date = 0L;
+        this.description = "";
+        quizzes = new ArrayList<Quiz>();
+        symptoms = new ArrayList<Symptom>();
+        treatments = new ArrayList<Treatment>();
     }
 }

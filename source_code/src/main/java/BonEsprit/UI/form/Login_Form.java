@@ -1,31 +1,18 @@
-package BonEsprit.UI;
+package BonEsprit.UI.form;
 
 import BonEsprit.Model.User;
 import BonEsprit.Service.UserService;
-
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import BonEsprit.UI.UserManager;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.Component;
-import javax.swing.SwingConstants;
+import java.awt.*;
 import javax.swing.JTextField;
-import java.awt.Rectangle;
-import java.awt.ComponentOrientation;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Insets;
-import java.awt.Point;
 import javax.swing.JButton;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,12 +22,25 @@ public class Login_Form extends JFrame {
 	private JTextField passwordTxt;
 	private JButton loginBtn;
 	private JButton signupBtn;
+
 	private UserService userService = new UserService();
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(() -> {
+			try {
+				Login_Form frame = new Login_Form();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public Login_Form(Layout_Form layoutForm) {
+	public Login_Form() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
@@ -82,8 +82,7 @@ public class Login_Form extends JFrame {
 		passwordTxt.setColumns(10);
 		passwordTxt.setBounds(158, 171, 202, 30);
 		contentPane.add(passwordTxt);
-		
-	
+
 		loginBtn = new JButton("Login");
 		loginBtn.setForeground(new Color(81, 61, 61));
 		loginBtn.setFont(new Font("Roboto", Font.BOLD, 16));
@@ -91,6 +90,7 @@ public class Login_Form extends JFrame {
 		loginBtn.setBackground(new Color(0x78C9BA));
 		loginBtn.setBounds(158, 230, 109, 40);
 		loginBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
 
 		loginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,13 +100,11 @@ public class Login_Form extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "Invalid username or Wrong password");
 					return;
 				}
-
 				UserManager.set(userInfo);
+				(new Main_Form()).setVisible(true);
 			}
 		});
-
 		contentPane.add(loginBtn);
-		
 		
 		signupBtn = new JButton("Sign Up");
 		signupBtn.setBackground(new Color(0xB6C6C3));
@@ -118,8 +116,9 @@ public class Login_Form extends JFrame {
 
 		signupBtn.addActionListener(new ActionListener() {
 			@Override
+			@Deprecated
 			public void actionPerformed(ActionEvent e) {
-				layoutForm.add(new Signup_Form(layoutForm));
+				(new Signup_Form()).setVisible(true);
 			}
 		});
 

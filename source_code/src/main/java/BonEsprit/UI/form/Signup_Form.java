@@ -1,11 +1,7 @@
-package BonEsprit.UI;
+package BonEsprit.UI.form;
 
 import BonEsprit.Model.User;
 import BonEsprit.Service.UserService;
-
-import java.awt.BorderLayout;
-
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -25,11 +21,8 @@ import javax.swing.JComponent;
 
 import java.awt.Color;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import java.awt.ComponentOrientation;
-import java.awt.Component;
 import java.util.UUID;
-import java.util.regex.Pattern;
 
 public class Signup_Form extends JFrame {
 
@@ -43,7 +36,7 @@ public class Signup_Form extends JFrame {
 	 * Create the frame.
 	 */
 	@Deprecated
-	public Signup_Form(Layout_Form mainLayout) {
+	public Signup_Form() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 750);
 		contentPane = new JPanel();
@@ -169,10 +162,12 @@ public class Signup_Form extends JFrame {
 		newUser.setEmail(emailTxt.getText());
 
 		String result = UserService.signUp(newUser);
-		JOptionPane.showMessageDialog(this, result);
-
-		mainLayout.remove(this);
-
+		signupBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(contentPane, result);
+			}
+		});
 	}	
 	
 }

@@ -1,74 +1,145 @@
-package BonEsprit.UI;
+package BonEsprit.UI.panel;
 
-import java.awt.BorderLayout;
+import BonEsprit.Model.Problem;
+import BonEsprit.Model.Quiz;
+import BonEsprit.Service.ProblemService;
+import BonEsprit.Service.QuizService;
+import BonEsprit.UI.UserManager;
+import BonEsprit.UI.form.Main_Form;
+import BonEsprit.UI.form.UpdateProblem_Form;
+import BonEsprit.UI.form.UpdateQuiz_Form;
+import jdk.jfr.internal.tool.Main;
+
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
+import javax.swing.*;
 
 class YourProblem extends JPanel{
 	JLabel postnameLabel;
-	JLabel addLabel;
+	JButton addQuizButton;
 	JPanel panelBtn;
 	JButton viewBtn;
 	JButton editBtn;
 	JButton removeBtn;
 	
-	public YourProblem(int position, String postname){
+	public YourProblem(int position, Problem problem, Main_Form mainForm){
 		this.setBounds(10, position, 374, 38);
 		this.setBackground(new Color(0xD3DEF2));
 		this.setBorder(null);
 		this.setLayout(null);
-		
-		
-		
-		postnameLabel = new JLabel(postname);
+
+		postnameLabel = new JLabel(problem.getName());
 		postnameLabel.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		postnameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		postnameLabel.setBounds(10, 0, 95, 38);
 		this.add(postnameLabel);
-		
-		addLabel = new JLabel("Add quizz");
-		addLabel.setFont(new Font("SansSerif", Font.ITALIC, 16));
-		addLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		addLabel.setBounds(100, 0, 95, 38);
-		this.add(addLabel);
+
+//		if(problem.getQuizzes().size() == 0) {
+//			addQuizButton = new JButton("Add quizz");
+//			addQuizButton.setFont(new Font("SansSerif", Font.ITALIC, 16));
+//			addQuizButton.setHorizontalAlignment(SwingConstants.CENTER);
+//			addQuizButton.setBounds(100, 0, 95, 38);
+//			addQuizButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+//			addQuizButton.setBorder(null);
+//			addQuizButton.setBackground(new Color(0xD3DEF2));
+//			this.add(addQuizButton);
+//
+//			addQuizButton.addActionListener(new ActionListener() {
+//				@Override
+//				public void actionPerformed(ActionEvent e) {
+//					(new UpdateQuiz_Form(new Quiz(0L), problem)).setVisible(true);
+//				}
+//			});
+//		}
+
 		
 		panelBtn = new JPanel();
 		panelBtn.setBounds(199, 0, 185, 38);
 		panelBtn.setBackground(new Color(0xD3DEF2));
 		this.add(panelBtn);
 		panelBtn.setLayout(null);
-			
-		viewBtn = new JButton("");
+
+		viewBtn = new JButton();
 		viewBtn.setBackground(new Color(0x879CE7));
-		viewBtn.setBounds(20, 0, 38, 38);
+		viewBtn.setBounds(20, 0, 30, 30);
+
+		Image img = null;
+		try {
+			img = ImageIO.read(new File("./resources/view.png"));
+			Image newimg = img.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH ) ;
+			viewBtn.setIcon(new ImageIcon(newimg));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		viewBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainForm.changePanel(new ProblemView_Panel(problem, mainForm).getContentPanel());
+			}
+		});
+
 		panelBtn.add(viewBtn);
-		
-		editBtn = new JButton("");
+
+
+		editBtn = new JButton();
+		editBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		editBtn.setBackground(new Color(0x83AB87));
-		editBtn.setBounds(73, 0, 38, 38);
+		editBtn.setBounds(73, 0, 30, 30);
+		try {
+			img = ImageIO.read(new File("./resources/edit.png"));
+			Image newimg = img.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH ) ;
+			editBtn.setIcon(new ImageIcon(newimg));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		editBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				(new UpdateProblem_Form(problem, UserManager.get())).setVisible(true);
+			}
+		});
+
 		panelBtn.add(editBtn);
 		
-		removeBtn = new JButton("");
+		removeBtn = new JButton();
+		removeBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		removeBtn.setBackground(new Color(0xC63636));
-		removeBtn.setBounds(127, 0, 38, 38);
+		removeBtn.setBounds(127, 0, 30, 30);
+		try {
+			img = ImageIO.read(new File("./resources/delete-icon.png"));
+			Image newimg = img.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH ) ;
+			removeBtn.setIcon(new ImageIcon(newimg));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		removeBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(ProblemService.deletePost(problem.getID()))
+				{
+					JOptionPane.showMessageDialog(panelBtn, "Deleted This Problem");
+					panelBtn.setVisible(false);
+					postnameLabel.setVisible(false);
+				}
+			}
+		});
+
 		panelBtn.add(removeBtn);
 	}
 }
@@ -80,15 +151,13 @@ class YourQuizz extends JPanel{
 	JButton editBtn;
 	JButton removeBtn;
 	
-	public YourQuizz(int position, String quizname){
+	public YourQuizz(int position, Quiz quiz, Main_Form mainForm){
 		this.setBounds(10, position, 374, 38);
 		this.setBackground(new Color(0xD3DEF2));
 		this.setBorder(null);
 		this.setLayout(null);
-		
-		
-		
-		quiznameLabel = new JLabel(quizname);
+
+		quiznameLabel = new JLabel(quiz.getName());
 		quiznameLabel.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		quiznameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		quiznameLabel.setBounds(10, 0, 175, 38);
@@ -99,28 +168,71 @@ class YourQuizz extends JPanel{
 		panelBtn.setBackground(new Color(0xD3DEF2));
 		this.add(panelBtn);
 		panelBtn.setLayout(null);
-			
-		viewBtn = new JButton("");
+
+		viewBtn = new JButton();
 		viewBtn.setBackground(new Color(0x879CE7));
-		viewBtn.setBounds(20, 0, 38, 38);
+		viewBtn.setBounds(20, 0, 30, 30);
+
+		Image img = null;
+		try {
+			img = ImageIO.read(new File("./resources/view.png"));
+			Image newimg = img.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH ) ;
+			viewBtn.setIcon(new ImageIcon(newimg));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		viewBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				mainForm.changePanel(new QuizView_Panel(quiz, mainForm).getContentPanel());
+			}
+		});
+
+
 		panelBtn.add(viewBtn);
-		
-		editBtn = new JButton("");
+
+		editBtn = new JButton();
 		editBtn.setBackground(new Color(0x83AB87));
-		editBtn.setBounds(73, 0, 38, 38);
+		editBtn.setBounds(73, 0, 30, 30);
+		try {
+			img = ImageIO.read(new File("./resources/edit.png"));
+			Image newimg = img.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH ) ;
+			editBtn.setIcon(new ImageIcon(newimg));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		editBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				(new UpdateQuiz_Form(quiz, quiz.getProblem())).setVisible(true);
+			}
+		});
+
+
 		panelBtn.add(editBtn);
-		
-		removeBtn = new JButton("");
+
+		removeBtn = new JButton();
 		removeBtn.setBackground(new Color(0xC63636));
-		removeBtn.setBounds(127, 0, 38, 38);
+		removeBtn.setBounds(127, 0, 30, 30);
+		try {
+			img = ImageIO.read(new File("./resources/delete-icon.png"));
+			Image newimg = img.getScaledInstance(25, 25,  java.awt.Image.SCALE_SMOOTH ) ;
+			removeBtn.setIcon(new ImageIcon(newimg));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		panelBtn.add(removeBtn);
 	}
 	
 }
 
 
-
-public class MyPost_Form extends JFrame {
+public class MyPost_Panel extends Content_Panel {
 
 	private JPanel mainPanel;
 	private JTextField searchTextField;
@@ -134,117 +246,18 @@ public class MyPost_Form extends JFrame {
 	private JPanel panel_1;
 	private JLabel yourquizzLabel;
 	private JPanel panel_2;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MyPost_Form frame = new MyPost_Form();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
-	public MyPost_Form() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100,100, 450, 750);
-		
-		mainPanel =  new JPanel();
-		mainPanel.setBackground(new Color(0xFFFFFF));
-		mainPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(mainPanel);
-		mainPanel.setLayout(null);
-		
-		JPanel homePanel = new JPanel();
-		homePanel.setBounds(0, 0, 450, 60);
-		homePanel.setBackground(new Color(0xFFFFFF));
-		homePanel.setLayout(null);
-		mainPanel.add(homePanel);
-		
-		menuButton = new JButton();
-		menuButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		menuButton.setBackground(new Color(0xC4C4C4));
-		
-		try {
-		    Image img = ImageIO.read(new File("./resources/menubar.png"));
-		    Image newimg = img.getScaledInstance(40, 40,  java.awt.Image.SCALE_SMOOTH ) ;
-		    menuButton.setIcon(new ImageIcon(newimg));
-		    
-		  } catch (Exception ex) {
-		    System.out.println(ex);
-		  }
-		
-		menuButton.setBounds(10, 10, 40, 40);
-		homePanel.add(menuButton);
-		
-		searchTextField = new JTextField();
-		searchTextField.setBounds(60, 18, 260, 28);
-		homePanel.add(searchTextField);
-		searchTextField.setColumns(10);
-		
-		searchButton = new JButton();
-		searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		searchButton.setBackground(new Color(0xD3E4F9));
-		try {
-		    Image img = ImageIO.read(new File("./resources/search.png"));
-		    Image newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH ) ;
-		    searchButton.setIcon(new ImageIcon(newimg));
-		  } catch (Exception ex) {
-		    System.out.println(ex);
-		  }
-		searchButton.setBounds(320, 17, 30, 30);
-		homePanel.add(searchButton);
-		
-		JLabel logo = new JLabel();
-		try {
-		    Image img = ImageIO.read(new File("./resources/brain.png"));
-		    Image newimg = img.getScaledInstance(60, 60,  java.awt.Image.SCALE_SMOOTH ) ;
-		    logo.setIcon(new ImageIcon(newimg));
-		    
-		  } catch (Exception ex) {
-		    System.out.println(ex);
-		  }
-		logo.setBounds(365, 2, 70, 60);
-		homePanel.add(logo);
-		
-		JPanel controlUnitPanel = new JPanel();
-		controlUnitPanel.setBackground(new Color(0xFFFFFF));
-		controlUnitPanel.setBounds(0, 65, 450, 30);
-		mainPanel.add(controlUnitPanel);
-		controlUnitPanel.setLayout(null);
-		
-		homeButton = new JButton("HOME");
-		homeButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		homeButton.setBackground(new Color(0xF4B4B4));
-		homeButton.setFont(new Font("SansSerif", Font.BOLD, 16));
-		homeButton.setBounds(44, 0, 90, 30);
-		controlUnitPanel.add(homeButton);
-		
-		allQuizzesButton = new JButton("QUIZZES");
-		allQuizzesButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		allQuizzesButton.setBackground(new Color(0xF4B4B4));
-		allQuizzesButton.setFont(new Font("SansSerif", Font.BOLD, 16));
-		allQuizzesButton.setBounds(300, 0, 105, 30);
-		controlUnitPanel.add(allQuizzesButton);
-		
-		allPostsButton = new JButton("POSTS");
-		allPostsButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		allPostsButton.setBounds(167, 0, 100, 30);
-		controlUnitPanel.add(allPostsButton);
-		allPostsButton.setBackground(new Color(0xF4B4B4));
-		allPostsButton.setFont(new Font("SansSerif", Font.BOLD, 16));
+	public MyPost_Panel(Main_Form mainForm) {
+		contentPanel = new JPanel();
+		contentPanel.setBackground(new Color(0xFFFFFF));
+		contentPanel.setBounds(0, 95, 450, 800);
+		contentPanel.setLayout(null);
 		
 		Image img;
-		String name = "Hello";
+		String name = "Hello, " + UserManager.get().getFirstName();
 		JLabel welcomeLabel = new JLabel(name);
 		try {
 			img = ImageIO.read(new File("./resources/smile.png"));
@@ -256,17 +269,17 @@ public class MyPost_Form extends JFrame {
 		}
 		welcomeLabel.setForeground(new Color(0, 51, 51));
 		welcomeLabel.setFont(new Font("Roboto", Font.ITALIC | Font.BOLD, 24));
-		welcomeLabel.setBounds(10, 130, 200, 50);
-		mainPanel.add(welcomeLabel);
+		welcomeLabel.setBounds(10, 100, 200, 50);
+		contentPanel.add(welcomeLabel);
 		
 		///Your problem
 		yourproblemLabel = new JLabel("Your Problem");
 		yourproblemLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
-		yourproblemLabel.setBounds(20, 191, 129, 35);
-		mainPanel.add(yourproblemLabel);
+		yourproblemLabel.setBounds(20, 191, 180, 35);
+		contentPanel.add(yourproblemLabel);
 		
 		JButton addBtn = new JButton("");
-		addBtn.setBounds(159, 191, 35, 35);
+		addBtn.setBounds(210, 191, 35, 35);
 		addBtn.setBackground(Color.white);
 		addBtn.setBorder(null);
 		addBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -275,9 +288,16 @@ public class MyPost_Form extends JFrame {
 			Image newimg = img2.getScaledInstance(35, 35,  java.awt.Image.SCALE_SMOOTH ) ;
 			addBtn.setIcon(new ImageIcon(newimg));
 		} catch (Exception e2) {
-			System.out.println(e2);
+			e2.printStackTrace();
 		}
-		mainPanel.add(addBtn);
+		contentPanel.add(addBtn);
+
+		addBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				(new UpdateProblem_Form(new Problem(0L), UserManager.get())).setVisible(true);
+			}
+		});
 		
 		panel_1 = new JPanelCustom(394, 190);
 		panel_1.setLocation(20, 249);
@@ -290,7 +310,7 @@ public class MyPost_Form extends JFrame {
 		panel_1Scroll.setBorder(null);
 		panel_1Scroll.setViewportView(panel_1);
 		panel_1Scroll.getVerticalScrollBar().setUnitIncrement(20);
-		mainPanel.add(panel_1Scroll);
+		contentPanel.add(panel_1Scroll);
 		
 		JLabel titleoftestLabel = new JLabel("Title of posts");
 		titleoftestLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -315,17 +335,18 @@ public class MyPost_Form extends JFrame {
 		verticalSep.setOrientation(SwingConstants.VERTICAL);
 		verticalSep.setBounds(199, 11, 1, 10000);
 		panel_1.add(verticalSep);
-		
-		
-		panel_1.add(new YourProblem(60, "Post 01")); // +48
-		panel_1.add(new YourProblem(108, "Post 02"));
-		
+
+		List<Problem> problems = ProblemService.readByUser(UserManager.get().getID());
+		System.out.println(problems.size());
+		for(int i = 0; i < problems.size(); i++) {
+			panel_1.add(new YourProblem(60 + 48*i, problems.get(i), mainForm));
+		}
 		
 		//Your Quizz
 		yourquizzLabel = new JLabel("Your Quizzes");
 		yourquizzLabel.setFont(new Font("SansSerif", Font.BOLD, 20));
 		yourquizzLabel.setBounds(20, 457, 129, 35);
-		mainPanel.add(yourquizzLabel);
+		contentPanel.add(yourquizzLabel);
 		
 		panel_2 = new JPanelCustom(394, 190);
 		panel_2.setLocation(20, 510);
@@ -338,7 +359,7 @@ public class MyPost_Form extends JFrame {
 		panel_2Scroll.setBorder(null);
 		panel_2Scroll.setViewportView(panel_2);
 		panel_2Scroll.getVerticalScrollBar().setUnitIncrement(20);
-		mainPanel.add(panel_2Scroll);
+		contentPanel.add(panel_2Scroll);
 		
 		JLabel titleoftestLabel_2 = new JLabel("Title of posts");
 		titleoftestLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -363,9 +384,10 @@ public class MyPost_Form extends JFrame {
 		verticalSep_2.setOrientation(SwingConstants.VERTICAL);
 		verticalSep_2.setBounds(199, 11, 1, 10000);
 		panel_2.add(verticalSep_2);
-		
 
-		panel_2.add(new YourQuizz(60, "Quiz 01")); // +48
-		panel_2.add(new YourQuizz(108, "Quiz 02"));
+		List<Quiz> quizzes = QuizService.searchByAuthor(UserManager.get().getID());
+		for(int i = 0; i < quizzes.size(); i++) {
+			panel_2.add(new YourQuizz(60 + 48*i, quizzes.get(i), mainForm));
+		}
 	}
 }

@@ -1,4 +1,4 @@
-package BonEsprit.UI;
+package BonEsprit.UI.panel;
 
 import java.awt.Dimension;
 
